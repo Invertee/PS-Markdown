@@ -2,6 +2,7 @@ function Out-MDTitle {
     Param(
         [parameter(Position=0)] [ValidateScript({$_.Length -lt 80})] [string] $Title,
         [parameter()] [ValidateSet('h1','h2','h3','h4','h5','h6')] $Header,
+        [parameter()] [switch] $AsString,
         [parameter()] [string] $File = "C:$env:HOMEPATH\Desktop\Output.md"
     )
 
@@ -15,5 +16,9 @@ function Out-MDTitle {
         Default { $Output = '# '}
     }
     $Output = $Output + $Title
-    $Output | Out-File -FilePath $File -Encoding utf8 -Append
+    if ($AsString) {
+        $Output | Out-String -Stream
+    } else {
+        $Output | Out-File -FilePath $File -Encoding utf8 -Append
+    }
 }

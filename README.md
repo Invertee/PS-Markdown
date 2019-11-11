@@ -11,6 +11,10 @@ Made this for a larger project, simple but it works.
 
 Each command accepts the parameter `-File` which points to the output file, if none is specified all commands output to the desktop. Each command appends to the markdown file, so they can be chained together in a script. 
 
+Set the default parameter value to stop you having to enter it for every command like so:
+
+`$PSDefaultParameterValues = @{"Out-MD*:File" = "C:\Output.md";}`
+
 #### Examples
 
 > PS C:\Users\Sam> Out-MDTitle -Title "hello" -Header h3
