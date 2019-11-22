@@ -35,7 +35,7 @@ OpenVPN|OpenVPN|10000000|
 Bluetooth Network Connection|Bluetooth Network Connection|3000000|
 Ethernet|Ethernet|0|
 
-> PS C:\Users\Sam> Out-MDList -Items (Get-ComputerInfo).CsNetworkAdapters.Description
+> PS C:\Users\Sam> Out-MDList -Items (Get-ComputerInfo).CsNetworkAdapters.Description -Ordered
 
 Outputs:
 
