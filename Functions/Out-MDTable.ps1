@@ -8,9 +8,9 @@ function Out-MDTable {
     $Headers = @()
 
     # Header Creation
-    $InputObject | Get-Member -MemberType Properties | ForEach-Object {
-        $Headers += $_.Name
-        $Output += $_.Name
+    $InputObject[0].psobject.properties.name | ForEach-Object {
+        $Headers += $_
+        $Output += $_
         $Output += '|'
         if ($Centered) {$Header += ':-:|'} else {$Header += '-|'} 
     }
