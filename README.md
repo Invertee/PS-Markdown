@@ -47,7 +47,7 @@ Outputs:
 5. TAP-Win32 Adapter V9
 
 ### Vertical Tables
-Created this to create quick documentation like this:
+Created this to create quick documentation like so:
 
 ```
 $DHCP = Get-DhcpServerv4Scope
