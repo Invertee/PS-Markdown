@@ -1,6 +1,6 @@
 @{
     # Script module or binary module file associated with this manifest.
-    RootModule = 'PSMarkdown.psm1'
+    RootModule = 'PS-Markdown.psm1'
     
     # Version number of this module.
     ModuleVersion = '0.5'
