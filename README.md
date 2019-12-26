@@ -9,6 +9,7 @@ Made this for a larger project, simple but it works.
 * `Out-MDTable` - Converts a PSObject from another PS command to a markdown table. Converts every property in the object, so filter it first.
 * `Out-MDList` - Converts an array into a list, ordered and unordered supported.
 * `Out-MDText` - Outputs standard text 
+* `Out-MDTableVertical` - Outputs a two column table with headers on the left and the value on the right. 
 
 Each command accepts the parameter `-File` which points to the output file, if none is specified all commands output to the desktop. Each command appends to the markdown file, so they can be chained together in a script. 
 
@@ -44,3 +45,38 @@ Outputs:
 3. Bluetooth Device (Personal Area Network)
 4. Hyper-V Virtual Ethernet Adapter
 5. TAP-Win32 Adapter V9
+
+### Vertical Tables
+Created this to create quick documentation like this:
+
+```
+$DHCP = Get-DhcpServerv4Scope
+Foreach ($Scope in $DHCP) {
+    if ( $Scope.State -eq 'Active' ) { $enabled = '✔️' } else { $enabled = '❌' } 
+    $leases = Get-DhcpServerv4Lease $Scope.scopeid.IPAddressToString
+    $reservations = Get-DhcpServerv4Reservation $Scope.scopeid.IPAddressToString
+    $ScopeData = [Ordered]@{
+        "Enabled" = $Enabled
+        "Scope ID" = $Scope.scopeid.IPAddressToString
+        "Subnet Mask" = $Scope.SubnetMask.IPAddressToString
+        "Lease Start" = $Scope.startrange.IPAddressToString
+        "Lease End" = $Scope.endrange.IPAddressToString
+        "Lease Count" = $leases.count
+        "Reservation Count" = $reservations.count
+    }
+    Out-MDTableVertical -InputObject $ScopeData -HeaderTitle $Scope.name
+}
+
+Out-MDTableVertical -InputObject $ScopeData -HeaderTitle $Scope.name
+```
+Which outputs something like this:
+
+| tk.internal ||
+|-|-|
+|Enabled|✔️|
+|Scope ID|10.62.10.0|
+|Subnet Mask|255.255.255.0|
+|Lease Start|10.62.10.20|
+|Lease End|10.62.10.240|
+|Lease Count|176|
+|Reservation Count|10|
