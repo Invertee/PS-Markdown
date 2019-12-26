@@ -1,8 +1,12 @@
-## Powershell module for outputting markdown
+## PS-Markdown - Powershell module for outputting markdown content
 
 Made this for a larger project, simple but it works. 
 
-#### Usage
+### Install
+
+`Install-Module -Name PS-Markdown`
+
+### Usage
 * `Out-MDTitle` - Outputs various sized titles
 * `Out-MDCodeBlock` - Outputs codeblock
 * `Out-MDLink` - Outputs formatted link
@@ -17,7 +21,7 @@ Set the default parameter value to stop you having to enter it for every command
 
 `$PSDefaultParameterValues = @{"Out-MD*:File" = "C:\Output.md";}`
 
-#### Examples
+### Examples
 
 > PS C:\Users\Sam> Out-MDTitle -Title "hello" -Header h3
 
@@ -47,7 +51,7 @@ Outputs:
 5. TAP-Win32 Adapter V9
 
 ### Vertical Tables
-Created this to create quick documentation like so:
+Created this to create quick documentation like this:
 
 ```
 $DHCP = Get-DhcpServerv4Scope
